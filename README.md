@@ -1,1 +1,1 @@
-# color-palitra
+https://nikitsch.github.io/color-palitra/src/
