@@ -10,6 +10,23 @@ body {
   font-family: 'Quicksand', sans-serif;
 }
 
+.amount_menu {
+  position: absolute;
+  padding: 50px;
+}
+
+.amount_menu button {
+  height: 50px;
+  width: 50px;
+  opacity: 0.5;
+  border-radius: 25px;
+  font-size: 2rem;
+}
+
+.amount_menu button:active {
+  transform: scale(1.2);
+}
+
 .column {
   display: flex;
   flex: 1;
