@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+:root {
+  --Shadow: rgb(209, 209, 209);
+}
+
 body {
   height: 100vh;
   display: flex;
@@ -12,19 +16,55 @@ body {
 
 .amount_menu {
   position: absolute;
-  padding: 50px;
+  top: -130px;
+  left: -130px;
+  display: grid;
+  grid-template-areas: "post-1 post-2"
+                       "post-3 post-4";
+  grid-template-rows: repeat(2, 130px);
+  grid-template-columns: repeat(2, 130px); 
+  width: 260px;
+  height: 260px;
+  border-radius: var(--widthA); 
+  --widthA: 130px;
+  background-color: var(--Shadow);
+  opacity: 0.4;
+  cursor: pointer;
 }
 
-.amount_menu button {
-  height: 50px;
-  width: 50px;
-  opacity: 0.5;
-  border-radius: 25px;
-  font-size: 2rem;
+.post-4 {           
+  grid-area: post-4;
+  width: 55px;
+  height: 55px;
+  margin: calc(var(--widthA) / 2.82 - 28px );
 }
 
-.amount_menu button:active {
-  transform: scale(1.2);
+.add_color {
+  outline: none;
+  border: none; 
+  background: transparent;
+  font-size: 3rem;
+  color: white;
+}
+
+.fa-sharp {
+  -webkit-transition: -webkit-transform .3s ease-in-out;
+  transition: transform .3s ease-in-out;
+}
+
+.amount_menu:hover {
+  transform: scale(1.1);
+  opacity: 0.7;
+}
+
+.amount_menu:hover .fa-sharp {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+
+}
+
+.amount_menu:active {
+  opacity: 0.8;
 }
 
 .column {
@@ -47,7 +87,16 @@ body {
   transition: 0.2s;
 }
 
-.column button {
+.use_btn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.use_btn .fa-solid {
+  margin: 0 10px;
+}
+
+.column button{
   outline: none;
   padding: 20px;
   border: none;
