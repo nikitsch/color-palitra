@@ -111,3 +111,33 @@ body {
   border-radius: 10px;
   transition: 0.2s;
 }
+
+.info {
+  position: fixed;
+  text-transform: uppercase;
+  font-size: 4rem;
+  width: 100vw;
+  top: 40vh;
+  opacity: 0.4;
+  text-align: center;
+}
+
+@keyframes pulse-of-space {
+  from {transform: scale(1)}
+  to {transform: scale(1.2)}
+}
+
+.info p {
+  animation: pulse-of-space 1s infinite alternate;
+  text-align: center;
+  margin: auto;
+  width: 9.5em;
+  line-height: 1.5em;
+  border: 0.1em solid var(--Shadow);
+  color: var(--Shadow);
+  border-radius: 0.75em;
+}
+
+.info p span {
+  font-weight: bold;
+}

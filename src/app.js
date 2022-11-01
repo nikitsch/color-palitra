@@ -1,3 +1,4 @@
+let info_space = document.querySelector('.info');
 let amount_menu = document.querySelector('.amount_menu');
 let columns; updateColumnsState()
 
@@ -21,6 +22,7 @@ document.addEventListener('keydown', (event) => {
   if (event.code == 'Space') {
     updateColumnsState()
     setRandomColors()
+    info_space.remove()
   }
 })
 
