@@ -1,5 +1,5 @@
-let info_space = document.querySelector('.info');
-let amount_menu = document.querySelector('.amount_menu');
+let infoSpace = document.querySelector('.info');
+let amountMenu = document.querySelector('.amount_menu');
 let columns; updateColumnsState()
 
 function updateColumnsState() {
@@ -22,7 +22,7 @@ document.addEventListener('keydown', (event) => {
   if (event.code == 'Space') {
     updateColumnsState()
     setRandomColors()
-    info_space.remove()
+    infoSpace.remove()
   }
 })
 
@@ -45,10 +45,10 @@ document.addEventListener('click', (event) => {
 
     setRandomColor(newColumn, columns.length, getColorsFromHash(), false)
 
-    amount_menu.style.backgroundColor = newColumn.style.backgroundColor
+    amountMenu.style.backgroundColor = newColumn.style.backgroundColor
 
     function backgroundColor() {
-      amount_menu.style.backgroundColor = "rgb(187, 187, 187)"
+      amountMenu.style.backgroundColor = "rgb(187, 187, 187)"
     }
 
     setTimeout(backgroundColor, 80)
