@@ -1,4 +1,10 @@
-let columns = document.querySelectorAll('.column');
+let infoSpace = document.querySelector('.info');
+let amountMenu = document.querySelector('.amount_menu');
+let columns; updateColumnsState()
+
+function updateColumnsState() {
+  columns = document.querySelectorAll('.column');
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const hashes = getColorsFromHash();
@@ -8,19 +14,21 @@ document.addEventListener("DOMContentLoaded", () => {
     return collaboratedColumn;
   }).slice(1)
   document.body.append(...collaborates);
+  updateColumnsState();
 });
 
 document.addEventListener('keydown', (event) => {
   event.preventDefault()
   if (event.code == 'Space') {
-    columns = document.querySelectorAll('.column');
+    updateColumnsState()
     setRandomColors()
+    infoSpace.remove()
   }
 })
 
 document.addEventListener('click', (event) => {
   const type = event.target.dataset.type;
-  if (type == 'lock') {
+  if (type === 'lock') {
     let node = event.target.tagName.toLowerCase() == 'i'
       ? event.target
       : event.target.children[0];
@@ -28,14 +36,25 @@ document.addEventListener('click', (event) => {
     node.classList.toggle('fa-lock');
   } else if (type === 'copy') {
     copyTextToClick(event.target.textContent)
-  } else if (type === 'menu') {
+  } else if (type === 'add') {
 
     const newColumn = getColumn();
     document.body.append(newColumn);
 
-    columns = document.querySelectorAll('.column');
+    updateColumnsState()
 
     setRandomColor(newColumn, columns.length, getColorsFromHash(), false)
+
+    amountMenu.style.backgroundColor = newColumn.style.backgroundColor
+
+    function backgroundColor() {
+      amountMenu.style.backgroundColor = "rgb(187, 187, 187)"
+    }
+
+    setTimeout(backgroundColor, 80)
+
+  } else if (type === 'trash') {
+    deleteColumn(event)
   }
 })
 
@@ -56,7 +75,8 @@ function setRandomColor(el, index, colors, isInitial) {
 
   let isLocked = el.querySelector('i').classList.contains('fa-lock');
   let text = el.querySelector('h1');
-  let svg = el.querySelector('button');
+  let svgLock = el.querySelector('.fa-lock-open');
+  let svgTrash = el.querySelector('.fa-trash-can');
 
   if (isLocked) {
     colors.push(text.textContent)
@@ -76,8 +96,8 @@ function setRandomColor(el, index, colors, isInitial) {
   text.textContent = color;
   el.style.background = color;
   setTextColor(text, color);
-  setTextColor(svg, color);
-
+  setTextColor(svgLock, color);
+  setTextColor(svgTrash, color);
 }
 
 function setRandomColors(isInitial) {
@@ -89,10 +109,6 @@ function setRandomColors(isInitial) {
   });
   updateColorsHash(colors);
 }
-
-
-
-
 
 function setTextColor(viewEl, color) {
   let luminance = chroma(color).luminance();
