@@ -37,6 +37,10 @@ document.addEventListener('click', (event) => {
   } else if (type === 'copy') {
     copyTextToClick(event.target.textContent)
   } else if (type === 'add') {
+    
+    let nullPage = document.querySelector('.basement');
+    if(nullPage) nullPage.remove();
+    amountMenu.classList.remove('basement_adder')
 
     const newColumn = getColumn();
     document.body.append(newColumn);
@@ -57,6 +61,38 @@ document.addEventListener('click', (event) => {
     deleteColumn(event)
   }
 })
+
+// document.addEventListener('dblclick', (event) => {
+//   const type = event.target.dataset.type;
+
+
+//   if (type === 'copy') {
+//     // создаём поле
+//     let input = document.createElement('input');
+//     input.value = document.textContent;
+
+//     // очищаем ячейку
+//     while (document.firstChild) {
+//       document.removeChild(document.firstChild);
+//     }
+
+//     // вставляем поле и даём ему фокус
+//     document.appendChild(input);
+//     input.focus();
+
+//     // вешаем обработчик потери фокуса
+//     input.addEventListener('blur', () => {
+//       // удаляем поле
+//       document.removeChild(input);
+
+//       // добавляем текст в ячейку
+//       document.appendChild(document.createTextNode(input.value));
+//     });
+
+//   }
+
+//   console.log('dblclickkkk')
+// })
 
 function randomColor() {
   const HEX = '0123456789ABCDEF';
