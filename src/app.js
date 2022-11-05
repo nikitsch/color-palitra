@@ -37,6 +37,9 @@ document.addEventListener('click', (event) => {
   } else if (type === 'copy') {
     copyTextToClick(event.target.textContent)
   } else if (type === 'add') {
+    
+    document.querySelector('.basement')?.remove();
+    amountMenu.classList.remove('basement_adder')
 
     const newColumn = getColumn();
     document.body.append(newColumn);

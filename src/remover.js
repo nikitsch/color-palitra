@@ -1,7 +1,9 @@
 function deleteColumn(event) {
-  if (columns.length > 1) {
-    let target = event.target.closest(".column")
-    target.remove()
-    updateColumnsState()
+  event.target.closest(".column")?.remove()
+  updateColumnsState()
+
+  if (!columns.length) {
+    infoSpace.remove()
+    document.body.append(createBasement());
   }
 }

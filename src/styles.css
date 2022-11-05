@@ -25,8 +25,8 @@ body {
   grid-template-columns: repeat(2, 130px); 
   width: 260px;
   height: 260px;
-  border-radius: var(--widthA); 
-  --widthA: 130px;
+  border-radius: var(--borderRadiusAmountMenu); 
+  --borderRadiusAmountMenu: 130px;
   background-color: var(--Shadow);
   opacity: 0.4;
   cursor: pointer;
@@ -34,9 +34,9 @@ body {
 
 .post-4 {           
   grid-area: post-4;
-  width: 55px;
-  height: 55px;
-  margin: calc(var(--widthA) / 2.82 - 28px );
+  width: 48px;
+  height: 48px;
+  margin: calc(var(--borderRadiusAmountMenu) / 2.83 - 24px );
 }
 
 .add_color {
@@ -44,7 +44,10 @@ body {
   border: none; 
   background: transparent;
   font-size: 3rem;
+  width: 48px;
+  height: 48px;
   color: white;
+  cursor: pointer;
 }
 
 .fa-sharp {
@@ -115,9 +118,10 @@ body {
 .info {
   position: fixed;
   text-transform: uppercase;
-  font-size: 4rem;
+  font-size: var(--fontSizeInfo);
+  --fontSizeInfo: 4rem;
   width: 100vw;
-  top: 40vh;
+  top: calc(50vh - var(--fontSizeInfo) / 2);
   opacity: 0.4;
   text-align: center;
 }
@@ -140,4 +144,20 @@ body {
 
 .info p span {
   font-weight: bold;
+}
+
+.basement_adder {
+  background-color: rgb(102, 102, 102);
+  opacity: 1;
+  animation: pulse-of-space 1s infinite alternate
+}
+
+.basement {
+  background-color: var(--Shadow);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
 }
