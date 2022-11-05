@@ -4,7 +4,7 @@ function createBasement() {
 
   const textBase = document.createElement("p");
   textBase.classList.add("basement_text");
-  textBase.innerHTML = 'There are not many bright pages in life, so add them ...';
+  textBase.append('There are not many bright pages in life, so add them ...');
 
   const pageBasement = document.createElement("div");
   pageBasement.classList.add("basement");
