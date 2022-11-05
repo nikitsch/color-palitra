@@ -1,6 +1,5 @@
 function deleteColumn(event) {
-  let target = event.target.closest(".column")
-  target.remove()
+  event.target.closest(".column")?.remove()
   updateColumnsState()
 
   if (!columns.length) {
