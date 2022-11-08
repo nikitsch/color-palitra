@@ -15,6 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }).slice(1)
   document.body.append(...collaborates);
   updateColumnsState();
+
+  let colorFirstTimeBootingPage = document.querySelector('h1');
+  if (!document.location.hash) {
+    document.location.hash = colorFirstTimeBootingPage.textContent
+  }
 });
 
 document.addEventListener('keydown', (event) => {
