@@ -15,6 +15,8 @@ function deleteColumn(event) {
 
   document.location.hash = newHash
 
+  if (columns[0]) colorInfoTable()
+
   if (!columns.length) {
     document.body.append(createBasement());
   }
