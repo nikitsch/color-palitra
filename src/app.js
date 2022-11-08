@@ -37,7 +37,7 @@ document.addEventListener('click', (event) => {
   } else if (type === 'copy') {
     copyTextToClick(event.target.textContent)
   } else if (type === 'add') {
-    
+
     document.querySelector('.basement')?.remove();
     amountMenu.classList.remove('basement_adder')
 
@@ -47,6 +47,14 @@ document.addEventListener('click', (event) => {
     updateColumnsState()
 
     setRandomColor(newColumn, columns.length, getColorsFromHash(), false)
+    
+    let colorAddedColumn = newColumn.firstChild.textContent.substring(1)
+  
+    if (!document.location.hash) {
+      document.location.hash += `${colorAddedColumn}`
+    } else {
+      document.location.hash += `-${colorAddedColumn}`
+    }
 
     amountMenu.style.backgroundColor = newColumn.style.backgroundColor
 
@@ -108,7 +116,6 @@ function setRandomColors(isInitial) {
 
   columns.forEach((el, index) => {
     setRandomColor(el, index, colors, isInitial)
-
   });
   updateColorsHash(colors);
 }
