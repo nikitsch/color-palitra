@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!document.location.hash) {
     document.location.hash = colorFirstTimeBootingPage.textContent
   }
+
+  colorInfoTable()
 });
 
 document.addEventListener('keydown', (event) => {
@@ -60,6 +62,8 @@ document.addEventListener('click', (event) => {
     } else {
       document.location.hash += `-${colorAddedColumn}`
     }
+
+    colorInfoTable()
 
     amountMenu.style.backgroundColor = newColumn.style.backgroundColor
 
@@ -142,6 +146,11 @@ function getColorsFromHash() {
     return document.location.hash.substring(1).split('-').map(el => '#' + el)
   }
   return []
+}
+
+function colorInfoTable() {
+  let colorFirstColumn = columns[0].style.background
+  setTextColor(infoSpace, colorFirstColumn)
 }
 
 setRandomColors(true)
