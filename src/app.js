@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener('keydown', (event) => {
   event.preventDefault()
-  if (event.code == 'Space') {
+  if (event.code == 'Space' && columns.length) {
     updateColumnsState()
     setRandomColors()
     infoSpace.remove()
