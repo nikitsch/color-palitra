@@ -47,6 +47,7 @@ document.addEventListener('click', (event) => {
 
     document.querySelector('.basement')?.remove();
     amountMenu.classList.remove('basement_adder')
+    infoSpace.style.zIndex = "0"
 
     const newColumn = getColumn();
     document.body.append(newColumn);

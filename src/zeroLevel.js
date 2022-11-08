@@ -1,4 +1,6 @@
 function createBasement() {
+  infoSpace.style.zIndex = "-1"
+
   let amountMenu = document.querySelector('.amount_menu');
   amountMenu.classList.add("basement_adder");
 
