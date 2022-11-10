@@ -1,3 +1,14 @@
+const getColorsList = () => document.location.hash;
+const setColorsList = (list) => {
+  document.location.hash = list;
+}
+const pushColorToList = (color) => {
+  if (!getColorsList()) {
+    document.location.hash += `${color}`
+  } else {
+    document.location.hash += `-${color}`
+  }
+}
 let infoSpace = document.querySelector('.info');
 let amountMenu = document.querySelector('.amount_menu');
 let columns; updateColumnsState()
@@ -15,11 +26,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }).slice(1)
   document.body.append(...collaborates);
   updateColumnsState();
+
+  let colorFirstTimeBootingPage = document.querySelector('h1');
+  if (!getColorsList()) {
+    setColorsList(colorFirstTimeBootingPage.textContent)
+  }
+
+  colorInfoTable()
 });
 
 document.addEventListener('keydown', (event) => {
   event.preventDefault()
-  if (event.code == 'Space') {
+  if (event.code == 'Space' && columns.length) {
     updateColumnsState()
     setRandomColors()
     infoSpace.remove()
@@ -37,9 +55,10 @@ document.addEventListener('click', (event) => {
   } else if (type === 'copy') {
     copyTextToClick(event.target.textContent)
   } else if (type === 'add') {
-    
+
     document.querySelector('.basement')?.remove();
     amountMenu.classList.remove('basement_adder')
+    infoSpace.style.zIndex = "2"
 
     const newColumn = getColumn();
     document.body.append(newColumn);
@@ -47,6 +66,12 @@ document.addEventListener('click', (event) => {
     updateColumnsState()
 
     setRandomColor(newColumn, columns.length, getColorsFromHash(), false)
+
+    let colorAddedColumn = newColumn.firstChild.textContent.substring(1)
+
+    pushColorToList(colorAddedColumn)
+
+    colorInfoTable()
 
     amountMenu.style.backgroundColor = newColumn.style.backgroundColor
 
@@ -57,7 +82,7 @@ document.addEventListener('click', (event) => {
     setTimeout(backgroundColor, 80)
 
   } else if (type === 'trash') {
-    deleteColumn(event)
+    deleteColumn(event, infoSpace)
   }
 })
 
@@ -108,7 +133,6 @@ function setRandomColors(isInitial) {
 
   columns.forEach((el, index) => {
     setRandomColor(el, index, colors, isInitial)
-
   });
   updateColorsHash(colors);
 }
@@ -119,17 +143,22 @@ function setTextColor(viewEl, color) {
 }
 
 function updateColorsHash(colors = []) {
-  document.location.hash = colors.map(el => {
+  setColorsList(colors.map(el => {
     return el.substring(1)
   })
-    .join('-')
+    .join('-'))
 }
 
 function getColorsFromHash() {
-  if (document.location.hash.length > 1) {
-    return document.location.hash.substring(1).split('-').map(el => '#' + el)
+  if (getColorsList().length > 1) {
+    return getColorsList().substring(1).split('-').map(el => '#' + el)
   }
   return []
+}
+
+function colorInfoTable() {
+  let colorFirstColumn = columns[0].style.background
+  setTextColor(infoSpace, colorFirstColumn)
 }
 
 setRandomColors(true)

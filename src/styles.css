@@ -30,6 +30,7 @@ body {
   background-color: var(--Shadow);
   opacity: 0.4;
   cursor: pointer;
+  z-index: 2;
 }
 
 .post-4 {           
@@ -76,6 +77,7 @@ body {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  z-index: 1;
 }
 
 .column h1 {
@@ -124,6 +126,8 @@ body {
   top: calc(50vh - var(--fontSizeInfo) / 2);
   opacity: 0.4;
   text-align: center;
+  color: white;
+  z-index: 2;
 }
 
 @keyframes pulse-of-space {
@@ -137,8 +141,7 @@ body {
   margin: auto;
   width: 9.5em;
   line-height: 1.5em;
-  border: 0.1em solid var(--Shadow);
-  color: var(--Shadow);
+  border: 0.1em solid;
   border-radius: 0.75em;
 }
 
@@ -160,4 +163,5 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 3rem;
+  z-index: 1;
 }
