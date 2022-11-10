@@ -1,3 +1,14 @@
+const getColorsList = () => document.location.hash;
+const setColorsList = (list) => {
+  document.location.hash = list;
+}
+const pushColorToList = (color) => {
+  if (!getColorsList()) {
+    document.location.hash += `${color}`
+  } else {
+    document.location.hash += `-${color}`
+  }
+}
 let infoSpace = document.querySelector('.info');
 let amountMenu = document.querySelector('.amount_menu');
 let columns; updateColumnsState()
@@ -17,8 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
   updateColumnsState();
 
   let colorFirstTimeBootingPage = document.querySelector('h1');
-  if (!document.location.hash) {
-    document.location.hash = colorFirstTimeBootingPage.textContent
+  if (!getColorsList()) {
+    setColorsList(colorFirstTimeBootingPage.textContent)
   }
 
   colorInfoTable()
@@ -47,7 +58,7 @@ document.addEventListener('click', (event) => {
 
     document.querySelector('.basement')?.remove();
     amountMenu.classList.remove('basement_adder')
-    infoSpace.style.zIndex = "0"
+    infoSpace.style.zIndex = "2"
 
     const newColumn = getColumn();
     document.body.append(newColumn);
@@ -55,14 +66,10 @@ document.addEventListener('click', (event) => {
     updateColumnsState()
 
     setRandomColor(newColumn, columns.length, getColorsFromHash(), false)
-    
+
     let colorAddedColumn = newColumn.firstChild.textContent.substring(1)
-  
-    if (!document.location.hash) {
-      document.location.hash += `${colorAddedColumn}`
-    } else {
-      document.location.hash += `-${colorAddedColumn}`
-    }
+
+    pushColorToList(colorAddedColumn)
 
     colorInfoTable()
 
@@ -75,7 +82,7 @@ document.addEventListener('click', (event) => {
     setTimeout(backgroundColor, 80)
 
   } else if (type === 'trash') {
-    deleteColumn(event)
+    deleteColumn(event, infoSpace)
   }
 })
 
@@ -136,15 +143,15 @@ function setTextColor(viewEl, color) {
 }
 
 function updateColorsHash(colors = []) {
-  document.location.hash = colors.map(el => {
+  setColorsList(colors.map(el => {
     return el.substring(1)
   })
-    .join('-')
+    .join('-'))
 }
 
 function getColorsFromHash() {
-  if (document.location.hash.length > 1) {
-    return document.location.hash.substring(1).split('-').map(el => '#' + el)
+  if (getColorsList().length > 1) {
+    return getColorsList().substring(1).split('-').map(el => '#' + el)
   }
   return []
 }

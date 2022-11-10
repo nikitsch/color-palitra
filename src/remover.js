@@ -1,11 +1,11 @@
-function deleteColumn(event) {
+function deleteColumn(event, infoSpace) {
   let selectedСolumn = event.target.closest(".column")
   selectedСolumn?.remove()
   updateColumnsState()
 
   let colorAddedPage = selectedСolumn.firstChild.textContent.substring(1)
-  let locationHash = document.location.hash
-  
+  let locationHash = getColorsList()
+
   let arrayColors = locationHash.replace(/[#-]/g, '').match(/.{1,6}/g)
   let indexDeletedColor = arrayColors.indexOf(`${colorAddedPage}`)
 
@@ -13,11 +13,11 @@ function deleteColumn(event) {
 
   let newHash = '#' + arrayColors.join('-')
 
-  document.location.hash = newHash
+  setColorsList(newHash)
 
   if (columns[0]) colorInfoTable()
 
   if (!columns.length) {
-    document.body.append(createBasement());
+    document.body.append(createBasement(infoSpace));
   }
 }
